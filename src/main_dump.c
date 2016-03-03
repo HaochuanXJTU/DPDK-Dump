@@ -32,7 +32,8 @@
 char * file_name = NULL;
 pcap_dumper_t * pcap_file_p;
 uint64_t max_packets = 0 ;
-uint64_t buffer_size = 1048576;
+//uint64_t buffer_size = 1048576;
+uint64_t buffer_size = 65536;
 uint64_t seconds_rotation = 0;
 uint64_t last_rotation = 0;
 int64_t  nb_rotations=0;
@@ -321,8 +322,8 @@ static void init_port(int i) {
 		ret = rte_eth_rx_queue_setup(i, 0, RX_QUEUE_SZ, rte_socket_id(), &rx_conf, pktmbuf_pool);
 		if (ret < 0) FATAL_ERROR("Error configuring receiving queue\n");
 		/* Configure mapping [queue] -> [element in stats array] */
-		ret = rte_eth_dev_set_rx_queue_stats_mapping 	(i, 0, 0);
-		if (ret < 0) FATAL_ERROR("Error configuring receiving queue stats\n");
+		//ret = rte_eth_dev_set_rx_queue_stats_mapping 	(i, 0, 0);
+		//if (ret < 0) FATAL_ERROR("Error configuring receiving queue stats\n");
 
 
 		/* Configure tx queue of current device on current NUMA socket. Mandatory configuration even if you want only rx packet */
